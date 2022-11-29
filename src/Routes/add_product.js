@@ -16,6 +16,8 @@ const add_product = async (req, res) => {
             const productObj = await new productCollection(productInfo);
             const data = await productObj.save();
             res.json({ data })
+        } else {
+            res.json({ failed: "Failed to add product" })
         }
 
     } catch (error) {

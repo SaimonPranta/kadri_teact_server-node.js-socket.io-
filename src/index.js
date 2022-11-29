@@ -7,6 +7,8 @@ const server = http.createServer(app)
 require("./DB/connection");
 const root = require("./Routes/root");
 const add_product = require("./Routes/add_product");
+const update_product = require("./Routes/update_porduct");
+const delete_product = require("./Routes/delete_product");
 
 
 const port = process.env.PORT || 7000;
@@ -21,6 +23,10 @@ const io = new Server(server, {
 // =========Routes=============
 app.get("/", root)
 app.post("/add_product", add_product)
+app.fetch("/add_product", update_product)
+app.delete("/delete_product", delete_product)
+
+
 
 
 
