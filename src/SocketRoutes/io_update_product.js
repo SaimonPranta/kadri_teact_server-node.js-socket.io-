@@ -1,8 +1,8 @@
 const productCollection = require("../DB/Models/productsCollection")
 
-const update_product = async (req, res) => {
+const io_update_product = async (info) => {
     try {
-        const { _id, name, price, OldPrice, img } = await req.body
+        const { _id, name, price, OldPrice, img } = await info
         const productInfo = await {}
         if (!_id) {
             res.json({ failed: "Failed to update product" })
@@ -18,10 +18,10 @@ const update_product = async (req, res) => {
             { ...productInfo },
             { new: true }
         )
-        res.json({ data })
+        console.log(data)
     } catch (error) {
-        res.json({ failed: "Failed to update product" })
+        console.log("Failed to update product")
     }
 }
 
-module.exports = update_product;
+module.exports = io_update_product;

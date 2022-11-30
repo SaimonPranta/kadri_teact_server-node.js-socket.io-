@@ -3,15 +3,15 @@ const productCollection = require("../DB/Models/productsCollection")
 const add_product = async (req, res) => {
     try {
         const { name, price, OldPrice, img } = await req.body
-        if (name && price && img) {
+        if (name && price) {
             const productInfo = await {
                 name,
-                price
+                price,
+                OldPrice,
+                img: "noting.png"
             }
-            await OldPrice ? productInfo["OldPrice"] = productInfo : false
-            await img ? productInfo["img"] = img : productInfo["img"] = "nothing.png"
-
-            console.log(OldPrice)
+            // await OldPrice ? productInfo["OldPrice"] = productInfo : false
+            // await img ? productInfo["img"] = img : productInfo["img"] = "nothing.png"
 
             const productObj = await new productCollection(productInfo);
             const data = await productObj.save();
@@ -22,7 +22,6 @@ const add_product = async (req, res) => {
 
     } catch (error) {
         res.json({ failed: "Failed to add product" })
-        console.log(error)
     }
 }
 
